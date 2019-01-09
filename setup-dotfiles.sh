@@ -51,3 +51,8 @@ source lib/configure_bash
 
 running "Adding public keys to authorized_keys file"
 source sshkeys/install_keys.sh --username algorythmic --silent && ok || error
+
+os="$(uname)"
+if [[ $os == "Darwin" ]]; then
+    source macos.sh
+fi
