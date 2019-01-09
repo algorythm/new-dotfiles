@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-source $DOTFILES_PATH/helpers.sh
-
+#!/bin/bash
 # Confirm before removing, replacing or overwriting files
 alias rm="rm -i"
 alias mv="mv -i"
@@ -31,7 +29,7 @@ alias la="ls -alh"
 # alias n22="nmap -n -Pn 10.20.0.0/24 -p22 -oG - | grep '/open/' | awk '{print \$2}'"
 
 # For Mac:
-get_os
+os="$(uname)"
 if [[ $os == "Darwin" ]]; then
     if [ "$(command -v trash)" ]; then
         alias rm="trash"

@@ -2,12 +2,13 @@
 
 # This script sources and links all files
 
-source lib/print.sh
+LIB="./lib"
+if [[ $(pwd) == "$HOME" ]]; then LIB="./new-dotfiles/lib"; fi
 
 function linkfiles()
 {
     # info "Linking files"
-    cd lib/link-files
+    cd $LIB/link-files
     for file in *; do
         if [ -f ~/.$file ]; then
             # warning "\"$file\" is already linked."
@@ -22,7 +23,7 @@ function linkfiles()
 function sourcefiles()
 {
     # info "Linking files"
-    cd lib/source-files
+    cd $LIB/source-files
     for file in *; do
         source $file
     done
@@ -43,13 +44,16 @@ function addSourcing()
 }
 
 if [[ $SHELL="/bin/bash" ]]; then
-    source lib/bash_prompt.sh
+    source $LIB/bash_prompt.sh
 fi
 
-if [ -x "$(command -v nvim) "]; then
-    update-alternatives --set editor $(which nvim)
-else
-    update-alternatives --set editor /usr/bin/vim.basic
+os="$(uname)"
+if [[ $os == "Linux" ]]; then
+    if [ -x "$(command -v nvim) " ]; then
+        update-alternatives --set editor $(which nvim)
+    else
+        update-alternatives --set editor /usr/bin/vim.basic
+    fi
 fi
 
 linkfiles

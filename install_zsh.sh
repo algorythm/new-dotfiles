@@ -3,6 +3,8 @@
 source lib/print.sh
 source lib/install.sh
 
+
+
 bot "This is the ZSH installation script"
 
 function zshrcgen()
@@ -30,7 +32,9 @@ function install_powerlevel()
     if [[ ! $SHELL == "/bin/zsh" ]]; then
         if questionY "Set default shell to ZSH"
         then
-            sudo -s 'echo $(which zsh) >> /etc/shells' && chsh -s $(which zsh)
+            # sudo -s 'echo $(which zsh) >> /etc/shells' && chsh -s $(which zsh)
+            chsh -s $(which zsh)
+            sudo chsh -s $(which zsh)
         fi
     fi
 
