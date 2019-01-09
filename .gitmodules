@@ -1,3 +1,6 @@
 [submodule "sshkeys"]
 	path = sshkeys
 	url = https://github.com/algorythm/sshkeys
+[submodule "PowerlineFonts"]
+	path = PowerlineFonts
+	url = https://github.com/powerline/fonts
