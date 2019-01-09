@@ -13,12 +13,12 @@ function zshrcgen()
             action "Backing up as $backupfile"
             mv $HOME/.zshrc $backupfile
 
-            cp lib/cp-files/zshrc $HOME/.zshrc
+            cp lib/cp-files/zshrc.sh $HOME/.zshrc
         else
             return -1
         fi
     else
-        cp lib/cp-files/zshrc $HOME/.zshrc
+        cp lib/cp-files/zshrc.sh $HOME/.zshrc
     fi
 
     info "Copied .zshrc"
@@ -30,7 +30,7 @@ function install_powerlevel()
     if [[ ! $SHELL == "/bin/zsh" ]]; then
         if questionY "Set default shell to ZSH"
         then
-            chsh -s $(which zsh)
+            sudo -s 'echo $(which zsh) >> /etc/shells' && chsh -s $(which zsh)
         fi
     fi
 
