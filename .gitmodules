@@ -1,0 +1,3 @@
+[submodule "sshkeys"]
+	path = sshkeys
+	url = https://github.com/algorythm/sshkeys
