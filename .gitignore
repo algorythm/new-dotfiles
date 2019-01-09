@@ -1,0 +1,11 @@
+# VS Code
+.vscode
+
+# MAc
+.DS_Store
+.Trashes
+.Spotlight-V100
+
+# Windows
+Thumbs.db
+Desktop.ini
