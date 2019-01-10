@@ -42,4 +42,9 @@ if [ -f "$HOME/.bashrc" ]; then
     echo "export PATH=\$PATH:$folder/flutter/bin" >> $HOME/.bashrc
 fi
 
+./android-toolchain.sh
+
+os=$(uname)
+if [[ "$os" == "Darwin" ]]; then ./ios-toolchain.sh; fi
+
 echo "Done! Restart your terminal session (or source your rc file) to enable the 'flutter' command."
