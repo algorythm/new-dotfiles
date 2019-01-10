@@ -2,8 +2,7 @@
 
 # This script sources and links all files
 
-LIB="./lib"
-if [[ $(pwd) == "$HOME" ]]; then LIB="./new-dotfiles/lib"; fi
+LIB=$HOME/new-dotfiles/lib
 
 function linkfiles()
 {
