@@ -55,7 +55,7 @@ function gdelbr()
 
 function emulator {
     IOS_EMULATOR="apple_ios_simulator"
-    ANDROID_EMULATOR="Pixel_XL_API_28"
+    ANDROID_EMULATOR="Pixel_2_XL_API_28"
 	if [ -z $1 ]; then
 		echo "Usage: $0 <ios|android>"
 		exit -1
