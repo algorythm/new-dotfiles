@@ -51,7 +51,8 @@ function install_powerlevel()
     # Install PowerLevel9k
     if [ ! -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel9k ]; then
         running "Installing PowerLevel9k"
-        git clone --quiet https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel9k && ok || error
+        git submodule update --quiet --init --remote ${CURR_DIR}/powerlevel9k && ok || error
+        # git clone --quiet https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel9k && ok || error
     else
         info "PowerLevel9k already installed."
     fi
@@ -62,7 +63,9 @@ function install_powerlevel()
     # Install Auto Suggestions
     if [ ! -d $autosuggestions ]; then
         running "Installing auto suggestions"
-        git clone --quiet https://github.com/zsh-users/zsh-autosuggestions $autosuggestions && ok || error
+        git submodule update --quiet --init --remote ${CURR_DIR}/zsh-autosuggestions && ok || error
+        ln -s $(realpath ${CURR_DIR}/zsh-autosuggestions) $autosuggestions
+        # git clone --quiet https://github.com/zsh-users/zsh-autosuggestions $autosuggestions && ok || error
     else
         info "Auto suggestions already installed."
     fi
@@ -70,7 +73,9 @@ function install_powerlevel()
     # # Install Syntax Highlighting
     if [ ! -d $syntaxhighlight ]; then
         running "Installling Syntax Highlighting"
-        git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git $syntaxhighlight && ok || error
+        git submodule update --quiet --init --remote ${CURR_DIR}/zsh-syntax-highlighting && ok || error
+        ln -s $(realpath ${CURR_DIR}/zsh-syntax-highlighting) $syntaxhighlight
+        # git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git $syntaxhighlight && ok || error
     else
         info "Syntax Highlighting already installed"
     fi
@@ -78,7 +83,7 @@ function install_powerlevel()
 
 bot "Will now install Powerline Fonts on your system..."
 
-git submodule update --quiet --init --remote PowerlineFonts && ok || error
+git submodule update --quiet --init --remote {CURR_DIR}/PowerlineFonts && ok || error
 source ${CURR_DIR}/PowerlineFonts/install.sh
 
 bot "Installing ZSH with PowerLevel9k"
