@@ -1,6 +1,6 @@
 #!/bin/bash
 CURR_DIR="$(dirname ${BASH_SOURCE})"
-source ${CURR_DIR}/lib/print.sh
+source ${CURR_DIR}/print.sh
 
 action "Installing command-line tools using homebrew"
 
