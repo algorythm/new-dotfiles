@@ -1,8 +1,8 @@
 #!/bin/bash
+CURR_DIR="$(dirname ${BASH_SOURCE})"
 
 # This script sources and links all files
-
-LIB=$HOME/new-dotfiles/lib
+LIB=${CURR_DIR}/lib
 
 function linkfiles()
 {

@@ -1,6 +1,6 @@
 #!/bin/bash
-
-source lib/print.sh
+CURR_DIR="$(dirname ${BASH_SOURCE})"
+source ${CURR_DIR}/lib/print.sh
 
 # Passing arguments
 POSITIONAL=()
@@ -8,7 +8,7 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
         -c|--clean|--remove)
-        source lib/cleanup.sh
+        source ${CURR_DIR}/lib/cleanup.sh
         bot "Cleaning up dotfiles."
         running "Removing sourcing from rc files"
         clean_rc_files
@@ -33,8 +33,8 @@ if [[ $os == "Darwin" ]]; then
     source macos.sh
 fi
 
-running "> Updating submodule sshkeys"
-git submodule update --quiet --init --remote sshkeys && ok || error
+# running "> Updating submodule sshkeys"
+# git submodule update --quiet --init --remote sshkeys && ok || error
 
 echo;
 
@@ -46,14 +46,14 @@ if [[ $SHELL == "/bin/bash" ]]; then
     if questionN "Do you want to replace your default shell with ZSH"; then
         source install_zsh.sh
     else
-        source lib/configure_bash.sh
+        source ${CURR_DIR}/lib/configure_bash.sh
     fi
 elif [[ $SHELL == "/bin/zsh" ]]; then
     source install_zsh.sh
 fi
 
-source lib/configure_bash
+source ${CURR_DIR}/lib/configure_bash
 
-running "Adding public keys to authorized_keys file"
-source sshkeys/install_keys.sh --username algorythmic --silent && ok || error
+# running "Adding public keys to authorized_keys file"
+# source ${CURR_DIR}/sshkeys/install_keys.sh --username algorythmic --silent && ok || error
 

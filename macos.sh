@@ -1,16 +1,11 @@
 #!/bin/bash
+CURR_DIR="$(dirname ${BASH_SOURCE})"
 
-source lib/print.sh
-
-bot "This is MacOS System."
-
-if ! questionN "Run MacOS Configuration script?"; then
-    echo "nope"
-    return -1
-fi
+source ${CURR_DIR}/print.sh
 
 # Remove all Dock icons
-if questionY "Remove all icons from the Dock"; then
+read -p  "Remove all icons from the Dock (Y/n)? " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     defaults write com.apple.dock persistent-apps -array
 fi
 

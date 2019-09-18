@@ -1,6 +1,6 @@
 #!/bin/bash
-
-source lib/print.sh
+CURR_DIR="$(dirname ${BASH_SOURCE})"
+source ${CURR_DIR}/lib/print.sh
 
 info "Configuring bash."
 

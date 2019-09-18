@@ -1,9 +1,7 @@
 #!/bin/bash
-
-source lib/print.sh
-source lib/install.sh
-
-
+CURR_DIR="$(dirname $0)"
+source ${CURR_DIR}/lib/print.sh
+source ${CURR_DIR}/lib/install.sh
 
 bot "This is the ZSH installation script"
 
@@ -81,7 +79,7 @@ function install_powerlevel()
 bot "Will now install Powerline Fonts on your system..."
 
 git submodule update --quiet --init --remote PowerlineFonts && ok || error
-./PowerlineFonts/install.sh
+source ${CURR_DIR}/PowerlineFonts/install.sh
 
 bot "Installing ZSH with PowerLevel9k"
 
