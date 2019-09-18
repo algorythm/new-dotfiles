@@ -40,12 +40,8 @@ if [[ "${OSTYPE}" == "gnu-linux" ]] || [[ "${OSTYPE}" == "darwin"* ]]; then
     fi
 fi
 
-# read -p "Are you sure? (y/N) " -n 1 -r; echo;
-# if [[ $REPLY =~ ^[Yy]$ ]]; then
-#     echo "Running dangerous stuff"
-# fi
+if [[ $SHELL == "/bin/zsh" ]]; then
+    source ${CURR_DIR}/install_zsh.sh
+fi
 
-# read -p "Do you want to setup a new Mac (Y/n)? " -n 1 -r; echo;
-# if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-#         echo "Running it"
-# fi
+source ${CURR_DIR}/lib/configure_bash.sh
