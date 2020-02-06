@@ -1,6 +1,6 @@
 [user]
-    name = algorythm
-    email = anders@wiberg.tech
+	name = algorythm
+	email = anders@wiberg.tech
 [color]
     ui = true
     diff = auto
@@ -46,6 +46,7 @@
     cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
 
 [core]
-	editor = vim
+	editor = code -w
+	autocrlf = input
 [pager]
 	branch = false
