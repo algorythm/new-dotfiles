@@ -1,6 +1,7 @@
 [user]
-	name = algorythm
+	name = Anders Wiberg Olsen
 	email = anders@wiberg.tech
+	signingkey = 2634D0430EC71B8E
 [color]
     ui = true
     diff = auto
@@ -28,25 +29,43 @@
     p = push
     po = push -u origin
     aac = !git add -Av && git commit
+    f = "fetch"
     branch-name = "!git rev-parse --abbrev-ref HEAD"
+    bname = "branch-name"
     rmbr = "!f() { \
         git push origin --delete "$@"; \
         git branch -d "$@"; \
     }; f"
     publish = "!git push -u origin $(git branch-name)"
+    pushlish = "publish"
+    v = "describe --abbrev=0"
+    first = "!git log master..$(git branch-name) --oneline | tail -1 | cut -d' ' -f1"
+    log-this = "ll master..$(branch-name)"
+    lt = "log-this"
+    rebase-this = "!git rebase -i --autosquash $(git first)^"
+    change-log = "!git log $(git describe --abbrev=0)..master --oneline --merges --format=format:'%s'"
+    cl = "change-log"
+    lc = "!git ll master..$(git branch-name)"
+    rbt = "rebase-this"
+    rbm = "rebase origin/master"
+    root = "rev-parse --show-toplevel"
+    pfl = "push --force-with-lease"
+    pft = "push --follow-tags"
 
+[mergetool "p4merge"]
+  path = /Applications/p4merge.app/Contents/Resources/launchp4merge
+[mergetool]
+  prompt = false
+  keepBackup = false
 [merge]
-    tool = intellij
-[mergetool "intellij"]
-    cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
-    trustExitCode = true
+  tool = p4merge
 [diff]
     tool = intellij
 [difftool "intellij"]
     cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
 
 [core]
-	editor = code -w
+	editor = nvim
 	autocrlf = input
 [pager]
 	branch = false
@@ -55,3 +74,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+;[pull]
+	;rebase = true
